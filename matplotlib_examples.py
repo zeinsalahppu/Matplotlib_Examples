@@ -7,15 +7,22 @@ simple matplotlib Examples
 import numpy as np
 import matplotlib.pyplot as plt
 
-x = [14.2, 16.4, 11.9, 15.2, 18.5, 22.1, 19.4, 25.1, 23.4, 18.1, 22.6, 17.2]
-y = [215, 325, 185, 332, 406, 522, 412, 614, 544, 421, 445, 408]
+def f(x):
+    return np.sin(2*x) - np.cos(x) + 1
 
-fig, ax = plt.subplots()
+def integrate(f, a, b, N):
+    dx = (b-a)/N
+    x = np.linspace(a+dx/2, b-dx/2, N)
+    fx = f(x)
+    fig, ax = plt.subplots()
 
-ax.set(xlabel='Temperature',
-       ylabel='Ice Cream Sales',
-       title='Temperature/Ice Cream Correlation')
+    ax.plot(x, fx, color='blue', alpha=1.00)
+    ax.fill_between(x, fx, 0, color='cyan', alpha=.2)
 
-ax.scatter(x, y)
+
+
+    area = np.sum(fx)*dx
+    return area
+
+print(integrate(f, -6, 6, 100))
 plt.show()
-
