@@ -3,22 +3,25 @@ simple matplotlib Examples
 
 """
 
+
+import numpy as np
 import matplotlib.pyplot as plt
 
-days = list(range(1, 8))
-temperature = [10, 14, 16, 20, 20, 14, 17]
+x = np.linspace(-2 * np.pi, 2 * np.pi, 100)
 
-fig, ax = plt.subplots() # one axis
+f_sin = 3*np.sin(x)
+f_poly = np.sin(2*x) - np.cos(x)
 
-# plt.xlabel('Days)')
-# plt.ylabel('Temperature')
-# plt.title('Temperature of the Week')
+fig, ax = plt.subplots()
 
-ax.set(xlabel='Days', ylabel='Temperature',
-       title='Temperature of the Week')
+startx, endx = -2 * np.pi - 0.1, 2*np.pi + 0.1
+starty, endy = -4.0, 4.0
+ax.axis([startx, endx, starty, endy])
 
+ax.set(xlabel='x-axis',
+       ylabel='y-axis',
+       title='Some periodic functions')
 
-ax.plot(days, temperature,
-         days, temperature, "or")
-
+ax.plot(x, f_sin, '--', x, f_poly, 'or')
 plt.show()
+
