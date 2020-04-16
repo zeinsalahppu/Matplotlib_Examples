@@ -3,25 +3,28 @@ simple matplotlib Examples
 
 """
 
-
 import numpy as np
 import matplotlib.pyplot as plt
 
 x = np.linspace(-2 * np.pi, 2 * np.pi, 100)
-
-f_sin = 3*np.sin(x)
-f_poly = np.sin(2*x) - np.cos(x)
+f_sin = 3 * np.sin(x)
+f_2 = np.sin(2 * x) - np.cos(x)
 
 fig, ax = plt.subplots()
 
-startx, endx = -2 * np.pi - 0.1, 2*np.pi + 0.1
-starty, endy = -4.0, 4.0
-ax.axis([startx, endx, starty, endy])
+# ax.spines['top'].set_visible(False)
+# ax.spines['right'].set_visible(False)
+#
+# ax.spines['bottom'].set_position(('data', 0))
+# ax.spines['left'].set_position(('data', 0))
 
-ax.set(xlabel='x-axis',
-       ylabel='y-axis',
-       title='Some periodic functions')
+ax.set_xticks([-2.0 * np.pi, -1.5 * np.pi, -1.0 * np.pi, -0.5 * np.pi, 0,
+                0.5 * np.pi, 1.0 * np.pi, 1.5 * np.pi, 2.0 * np.pi])
+# ax.set_xticklabels([r'$-2\pi$', '', r'$-\pi$', '', '', r'$\pi$', '', r'$2\pi$'])
 
-ax.plot(x, f_sin, '--', x, f_poly, 'or')
+ax.set_yticks([-3, -1, +1, 3])
+
+ax.set_title('Some periodic functions')
+
+ax.plot(x, f_sin, '--', x, f_2, 'r')
 plt.show()
-
