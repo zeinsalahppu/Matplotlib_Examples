@@ -1,14 +1,20 @@
 """
 simple matplotlib Examples
-
 """
 
 import matplotlib.pyplot as plt
+import numpy as np
 
-days = list(range(1, 8))
-temperature = [10, 14, 16, 20, 20, 14, 17]
+labels = ['Eng', 'IT', 'CAS', 'Sci', 'Med', 'CAP']
+student_count = np.array( [[280, 170], [250, 270], [210, 290], [130, 150], [145, 165], [500, 350]] )
 
-plt.plot(days, temperature,
-         days, temperature, "or")
+aggregated_student_count = student_count.sum(axis=1)
+flattened_student_count = student_count.flatten()
 
+fig, ax = plt.subplots()
+
+size = 0.3
+ax.pie(aggregated_student_count, radius=1, labels= labels, wedgeprops=dict(width=size, edgecolor='white'))
+
+ax.set_title('University Student Distribution per College')
 plt.show()
