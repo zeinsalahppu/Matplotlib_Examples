@@ -10,15 +10,16 @@ x = np.linspace(-2 * np.pi, 2 * np.pi, 100)
 f_sin = 3 * np.sin(x)
 f_2 = np.sin(2 * x) - np.cos(x)
 
-fig, axs = plt.subplots(2, 2)
+fig = plt.figure(1)
+fig.suptitle('Some plots')
 
-fig.suptitle('Some periodic functions')
+ax1 = plt.subplot(2, 2, 1)
+ax1.set_title('f(x)=3$sin(x)$')
+ax1.plot(x, f_sin, '--', label="3$sin(x)$")
 
-axs[0, 0].set_title('f(x)=3$sin(x)$')
-axs[0, 0].plot(x, f_sin, '--', label="3$sin(x)$")
-
-axs[1, 0].set_title('f(x)=sin(2x)-cos(x)$')
-axs[1, 0].plot(x, f_2, 'r', label="$sin(2x)-cos(x)$")
+ax2 = plt.subplot(2, 2, 2)
+ax2.set_title('f(x)=sin(2x)-cos(x)$')
+ax2.plot(x, f_2, 'r', label="$sin(2x)-cos(x)$")
 
 
 labels = ['Eng', 'IT', 'CAS', 'Sci', 'Med', 'CAP']
@@ -26,23 +27,23 @@ student_count = np.array( [[280, 170], [250, 270], [210, 290], [130, 150], [145,
 aggregated_student_count = student_count.sum(axis=1)
 flattened_student_count = student_count.flatten()
 
+ax3 = plt.subplot(2, 2, 3)
 size = 0.3
-axs[0, 1].pie(aggregated_student_count, radius=1, labels= labels, wedgeprops=dict(width=size, edgecolor='white'))
-axs[0, 1].set_title('University Student Distribution per College')
+ax3.pie(aggregated_student_count, radius=1, labels= labels, wedgeprops=dict(width=size, edgecolor='white'))
+ax3.set_title('University Student Distribution per College')
 
-
+ax4 = plt.subplot(2, 2, 4)
 x = np.arange(len(labels))
 width = 0.25
-
-axs[1, 1].bar(x - width/2, student_count[:, 0], width, label='Male', color = "red")
-axs[1, 1].bar(x + width/2, student_count[:, 1], width, label='Female', color = "blue")
+ax4.bar(x - width/2, student_count[:, 0], width, label='Male', color = "red")
+ax4.bar(x + width/2, student_count[:, 1], width, label='Female', color = "blue")
 
 # Add some text for labels, title and custom x-axis tick labels, etc.
-axs[1, 1].set_ylabel('PPU Students')
-axs[1, 1].set_title('Students per College')
-axs[1, 1].set_xticks(x)
-axs[1, 1].set_xticklabels(labels, rotation=45)
-axs[1, 1].legend()
+ax4.set_ylabel('PPU Students')
+ax4.set_title('Students per College')
+ax4.set_xticks(x)
+ax4.set_xticklabels(labels, rotation=45)
+ax4.legend()
 
 fig.tight_layout()
 plt.show()
