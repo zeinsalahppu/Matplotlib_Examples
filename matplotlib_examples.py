@@ -38,7 +38,7 @@ ax.annotate("3$sin(x)$", xy= pnt,
                        connectionstyle="angle3,angleA=0,angleB=-90"))
 
 pnt = 4.2, np.sin(2* 4.2) - np.cos(4.2)
-ax.annotate("3$sin(x)$", xy= pnt,
+ax.annotate("$sin(2x)-cos(x)$", xy= pnt,
             xytext=(5.5, 2),
             color="red",
             arrowprops=dict(arrowstyle="->", color="red",
